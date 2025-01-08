@@ -9,7 +9,7 @@ def add_logo():
             background-repeat: no-repeat;
             background-size: 40% 30%;
             padding-top: 80px;
-            background-position: 20px 20px;
+            background-position: 20px 0px;
             align: center;
         }
         [data-testid="stSidebarNav"]::before {
@@ -18,7 +18,7 @@ def add_logo():
             margin-top: 15px;
             font-size: 30px;
             position: relative;
-            top: 80px;
+            top: 10px;
         }
       </style>
       """,
