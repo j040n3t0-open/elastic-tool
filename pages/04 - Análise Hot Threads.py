@@ -131,67 +131,65 @@ def geradorDF(field_caps):
 
 Header.add_logo()
 
-if not "cadastro" in st.session_state:
-    Cadastro.cadastroUsuario()
-else:
-    st.title("Análise HOT Threads 🔥")
-    st.subheader("Aqui você terá o resumo de algumas informações do Hot Threads")
 
-    st.write("**Modelo de busca:**")
-    code = '''GET _nodes/hot_threads'''
-    st.code(code, language='php')
+st.title("Análise HOT Threads 🔥")
+st.subheader("Aqui você terá o resumo de algumas informações do Hot Threads")
 
-    field_caps = st.text_area('Cole o retorno da busca acima:')
+st.write("**Modelo de busca:**")
+code = '''GET _nodes/hot_threads'''
+st.code(code, language='php')
 
-    if "btn_click_hot_threads" not in st.session_state:
-        st.session_state['btn_click_hot_threads'] = False
+field_caps = st.text_area('Cole o retorno da busca acima:')
 
-    try:
-        BotaoSubmitStyle.botaoSubmit()
-        if st.button("Obter análise", type="primary"):
-            #with open('/home/joaoneto/projetos/scripts/elastic-tool-bkp/file.txt', 'a') as arquivo:
-                # Escrever conteúdo incrementalmente
-                #arquivo.write(field_caps)
-                #arquivo.write('\n')
-            # Função para extrair informações de uma entrada
-            # Função para extrair informações de uma entrada
-            df = geradorDF(field_caps)
+if "btn_click_hot_threads" not in st.session_state:
+    st.session_state['btn_click_hot_threads'] = False
 
-            st.divider()
+try:
+    BotaoSubmitStyle.botaoSubmit()
+    if st.button("Obter análise", type="primary"):
+        #with open('/home/joaoneto/projetos/scripts/elastic-tool-bkp/file.txt', 'a') as arquivo:
+            # Escrever conteúdo incrementalmente
+            #arquivo.write(field_caps)
+            #arquivo.write('\n')
+        # Função para extrair informações de uma entrada
+        # Função para extrair informações de uma entrada
+        df = geradorDF(field_caps)
 
-            st.session_state.df = df
-            st.session_state.field_caps = field_caps
-            st.session_state.btn_click_hot_threads  = True
+        st.divider()
 
-        if st.session_state.btn_click_hot_threads:
-            ## CONVERTENDO VALORES NUMERICOS
-            df = st.session_state.df
-            field_caps = st.session_state.field_caps
+        st.session_state.df = df
+        st.session_state.field_caps = field_caps
+        st.session_state.btn_click_hot_threads  = True
 
-            if not df.empty:
-                filtrar_node_name = st.multiselect("Selecione um Node para filtrar:", st.session_state.df['Node Name'].unique(), key='multi_hot')
+    if st.session_state.btn_click_hot_threads:
+        ## CONVERTENDO VALORES NUMERICOS
+        df = st.session_state.df
+        field_caps = st.session_state.field_caps
 
-                if filtrar_node_name:
-                    node_list = []
-                    for node in filtrar_node_name:
-                        node_list.append(node)
-                    dados_filtrados =  st.session_state.df[ st.session_state.df['Node Name'].isin(node_list)]
+        if not df.empty:
+            filtrar_node_name = st.multiselect("Selecione um Node para filtrar:", st.session_state.df['Node Name'].unique(), key='multi_hot')
 
-                    st.markdown(f'<br />',unsafe_allow_html=True)
-                    # Ordenar o DataFrame filtrado pela coluna 'store' em ordem decrescente
-                    sorted_df = dados_filtrados.sort_values(by='CPU Total %', ascending=False)
-                    st.dataframe(sorted_df, use_container_width=True)
-                else:
-                    
-                    st.markdown(f'<br />',unsafe_allow_html=True)
-                    sorted_df = st.session_state.df.sort_values(by='CPU Total %', ascending=False)
-                    st.dataframe(sorted_df, use_container_width=True)
+            if filtrar_node_name:
+                node_list = []
+                for node in filtrar_node_name:
+                    node_list.append(node)
+                dados_filtrados =  st.session_state.df[ st.session_state.df['Node Name'].isin(node_list)]
+
+                st.markdown(f'<br />',unsafe_allow_html=True)
+                # Ordenar o DataFrame filtrado pela coluna 'store' em ordem decrescente
+                sorted_df = dados_filtrados.sort_values(by='CPU Total %', ascending=False)
+                st.dataframe(sorted_df, use_container_width=True)
             else:
-                st.success("Nenhuma Thread identificada!", icon="🤷🏻‍♂️")
-            
-            st.divider()
-            st.write("Referência: [HOT THREADS](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-hot-threads.html)")
+                
+                st.markdown(f'<br />',unsafe_allow_html=True)
+                sorted_df = st.session_state.df.sort_values(by='CPU Total %', ascending=False)
+                st.dataframe(sorted_df, use_container_width=True)
+        else:
+            st.success("Nenhuma Thread identificada!", icon="🤷🏻‍♂️")
+        
+        st.divider()
+        st.write("Referência: [HOT THREADS](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-hot-threads.html)")
 
-    except Exception as e:
-        st.error('Valide se colou o arquivo corretamente!', icon="🚨")
-        st.write(e)
+except Exception as e:
+    st.error('Valide se colou o arquivo corretamente!', icon="🚨")
+    st.write(e)
