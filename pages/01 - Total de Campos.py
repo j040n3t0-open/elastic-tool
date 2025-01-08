@@ -34,35 +34,32 @@ def countFields(field_caps):
 
 Header.add_logo()
 
-if not "cadastro" in st.session_state:
-    Cadastro.cadastroUsuario()
-else:
-    st.title("Total de Campos 🧮")
-    st.subheader("Cole abaixo o resultado do seguinte comando:")
+st.title("Total de Campos 🧮")
+st.subheader("Cole abaixo o resultado do seguinte comando:")
 
-    st.write("**Modelo de busca:**")
-    code = '''GET nome-indice/_field_caps?fields=*'''
-    st.code(code, language='php')
+st.write("**Modelo de busca:**")
+code = '''GET nome-indice/_field_caps?fields=*'''
+st.code(code, language='php')
 
-    field_caps = st.text_area('Cole o retorno da busca acima:')
+field_caps = st.text_area('Cole o retorno da busca acima:')
 
-    def thatsFine(field_caps):
-        try:
-            total_campos,info_campos = countFields(field_caps)
-            print(type(info_campos))
-            print(info_campos)
-            st.success('Done!', icon="✅")        
-            st.subheader("Total de campos: %d" % total_campos)
-
-            df = pd.DataFrame(info_campos, columns=['tipo', 'quantidade'])
-
-            st.dataframe(df, use_container_width=True)
-        except:
-            st.error('Valide se colou o arquivo corretamente!', icon="🚨")
-
+def thatsFine(field_caps):
     try:
-        BotaoSubmitStyle.botaoSubmit()
-        if st.button("Obter análise", type="primary"):
-            thatsFine(field_caps)
+        total_campos,info_campos = countFields(field_caps)
+        print(type(info_campos))
+        print(info_campos)
+        st.success('Done!', icon="✅")        
+        st.subheader("Total de campos: %d" % total_campos)
+
+        df = pd.DataFrame(info_campos, columns=['tipo', 'quantidade'])
+
+        st.dataframe(df, use_container_width=True)
     except:
         st.error('Valide se colou o arquivo corretamente!', icon="🚨")
+
+try:
+    BotaoSubmitStyle.botaoSubmit()
+    if st.button("Obter análise", type="primary"):
+        thatsFine(field_caps)
+except:
+    st.error('Valide se colou o arquivo corretamente!', icon="🚨")

@@ -1,6 +1,6 @@
 import streamlit as st
 #from streamlit_extras.app_logo import add_logo
-from components import Header, Cadastro, BotaoSubmitStyle
+from components import Header, BotaoSubmitStyle
 import random, json, re
 import pandas as pd
 import numpy as np
