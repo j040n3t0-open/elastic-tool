@@ -1,0 +1,53 @@
+{
+    "took" : 4,
+    "profile" : {
+      "shards" : [
+        {
+          "id" : "[Win3GnoWT62vkzL87PWSAg][telemedicina_sumarizado][0]",
+          "searches" : [
+            {
+              "query" : [
+                {
+                  "type" : "MatchNoDocsQuery",
+                  "description" : """MatchNoDocsQuery("User requested "match_none" query.")""",
+                  "time" : "46.8micros",
+                  "time_in_nanos" : 46801,
+                  "breakdown" : {
+                    "set_min_competitive_score_count" : 0,
+                    "match_count" : 0,
+                    "shallow_advance_count" : 0,
+                    "set_min_competitive_score" : 0,
+                    "next_doc" : 0,
+                    "match" : 0,
+                    "next_doc_count" : 0,
+                    "score_count" : 0,
+                    "compute_max_score_count" : 0,
+                    "compute_max_score" : 0,
+                    "advance" : 0,
+                    "advance_count" : 0,
+                    "score" : 0,
+                    "build_scorer_count" : 5,
+                    "create_weight" : 45510,
+                    "shallow_advance" : 0,
+                    "create_weight_count" : 1,
+                    "build_scorer" : 1291
+                  }
+                }
+              ],
+              "rewrite_time" : 12183,
+              "collector" : [
+                {
+                  "name" : "SimpleTopScoreDocCollector",
+                  "reason" : "search_top_hits",
+                  "time" : "2.9micros",
+                  "time_in_nanos" : 2995
+                }
+              ]
+            }
+          ],
+          "aggregations" : [ ]
+        }
+      ]
+    }
+  }
+  
