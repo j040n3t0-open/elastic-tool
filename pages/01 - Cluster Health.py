@@ -267,6 +267,19 @@ if st.session_state.data_health:
         st.write("Status do Serviço: %s" % data_health['indicators']['slm']['details']['slm_status'])
         st.write("Qtd de Politicas: %s" % data_health['indicators']['slm']['details']['policies'])
 
+        if data_health['indicators']['slm']['impacts']:
+            for impacts in data_health['indicators']['slm']['impacts']:
+                st.write("Areas impactadas:")
+                for area in impacts['impact_areas']:
+                    st.markdown("* %s" % area)
+                st.write("Impacto: %s" % impacts['description'])
+
+        if data_health['indicators']['slm']['diagnosis']:
+            for diagnosis in data_health['indicators']['slm']['diagnosis']:
+                st.write("Causa: %s" % diagnosis['cause'])
+                st.write("Solução Proposta: %s" % diagnosis['action'])
+
+
         st.divider()
         
         st.markdown("#### ILM")
