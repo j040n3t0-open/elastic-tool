@@ -268,7 +268,7 @@ if st.session_state.data_health:
 
         st.divider()
         
-        st.markdown("#### SLM")
+        st.markdown("#### ILM")
 
         st.write("Status: %s" % data_health['indicators']['ilm']['status'])
         st.write("Descrição: %s" % data_health['indicators']['ilm']['symptom'])
