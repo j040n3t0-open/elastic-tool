@@ -93,21 +93,35 @@ st.code(code, language='php')
 
 data_shard = st.text_area('Cole aqui o retorno da consulta de shards:',key='shard')
 
+st.markdown("Por último precisamos pegar a data de criação:")
+code = '''GET _cat/indices?h=index,cds&expand_wildcards=all&format=json'''
+st.code(code, language='php')
+
+data_index_creation = st.text_area('Cole aqui o retorno da consulta dos indices:',key='indices')
+
 # checagem de botao
 if "btn_click" not in st.session_state:
     st.session_state['btn_click'] = False
 
 BotaoSubmitStyle.botaoSubmit()
 if st.button("Obter análise", key='shardSubmit', type="primary"):
-    if data and data_shard:
+    if data and data_shard and data_index_creation:
         try:
             data_hot_list, data_warm_list,data_cold_list,data_frozen_list = set_node_roles(data)
             data_shard = json.loads(data_shard)
             df = pd.DataFrame(data_shard)
+            data_index_creation = json.loads(data_index_creation)
+            df_index_creation = pd.DataFrame(data_index_creation)
+
+            # Adicionar informação de data de criação no Shard com base no índice
+            df = df.merge(df_index_creation, on='index', how='left')
+            # Renomear o nome da coluna
+            df = df.rename(columns={'cds': 'creation_date'})
 
             st.session_state.dados_processados_total = df
             st.session_state.data = data
             st.session_state.data_shard = data_shard
+            st.session_state.data_index_creation = data_index_creation
             
             data_hot_node = []
             for node in data_hot_list:
@@ -148,6 +162,7 @@ if st.session_state.btn_click:
         df = st.session_state.dados_processados_total
         data = st.session_state.data
         data_shard = st.session_state.data_shard
+        data_index_creation = st.session_state.data_index_creation
 
         data_hot_list, data_warm_list,data_cold_list,data_frozen_list = set_node_roles(data)
 
@@ -242,7 +257,6 @@ if st.session_state.btn_click:
             filtered_data_cold = df[df['node'].isin(data_cold_node)]
 
             
-
             filtrar_node_name = st.multiselect("Selecione um Node para filtrar:", st.session_state.dados_processados_cold['node'].unique(), key='multi_cold')
 
             if filtrar_node_name:
