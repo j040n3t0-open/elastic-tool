@@ -25,6 +25,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">CLUSTER<br /> {status_cluster.upper()}',unsafe_allow_html=True)
 
@@ -33,6 +35,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">MASTER<br /> {status_master.upper()}',unsafe_allow_html=True)
 
@@ -41,6 +45,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">REPOSITORY<br /> {status_repository.upper()}',unsafe_allow_html=True)
 
@@ -49,6 +55,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">DISK<br /> {status_disk.upper()}',unsafe_allow_html=True)
 
@@ -57,6 +65,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">SHARDS CAP.<br /> {status_shards_capacity.upper()}',unsafe_allow_html=True)
 
@@ -65,6 +75,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">SHARDS AVAI.<br /> {status_shards_availability.upper()}',unsafe_allow_html=True)
 
@@ -73,6 +85,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">DATA STREAM<br /> {status_ds_lifecycle.upper()}',unsafe_allow_html=True)
 
@@ -81,6 +95,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">SLM<br /> {status_slm.upper()}',unsafe_allow_html=True)
 
@@ -89,6 +105,8 @@ def printInitialReport(status_cluster,status_master,status_repository,status_dis
             style = f"background-color: {'green'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         elif status_cluster == "red":
             style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        elif status_cluster == "yellow":
+            style = f"background-color: {'Gold'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">ILM<br /> {status_ilm.upper()}',unsafe_allow_html=True)
 
