@@ -15,7 +15,9 @@ st.write("""Esse projeto foi criado para acelerar ainda mais o seu trabalho com 
 st.markdown("### Recursos em Destaque:")
 
 
-st.write("""**🧮 Total de Campos:** Tenha um controle completo sobre seus índices e documentos, acompanhando o número de campos em tempo real. Uma visão abrangente para melhorar sua estratégia de indexação.
+st.write("""** 🏥 Cluster Health:** A partir da versão 8.17+ foi criado a api "_health_report", com ela conseguimos ter a visão da saúde de alguns serviços primários do funcionamento de um cluster Elasticsearch. Apenas do retorno dessa API ser bem simplificado, resolvi trazer alguns elementos visuais para deixar ainda mais simples essa análise.
+
+**🧮 Total de Campos:** Tenha um controle completo sobre seus índices e documentos, acompanhando o número de campos em tempo real. Uma visão abrangente para melhorar sua estratégia de indexação.
 
 **⌛ Tempo de Consulta:** Otimize suas consultas com análises detalhadas de desempenho. Saiba exatamente quanto tempo cada consulta leva e identifique oportunidades de melhoria.
 
