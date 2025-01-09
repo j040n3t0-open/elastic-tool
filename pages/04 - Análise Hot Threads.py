@@ -12,6 +12,8 @@ def geradorDF(field_caps):
     texto = field_caps
 
     def extrair_informacoes(entrada):
+
+        print("-------\n\n")
         
         try:
             data_hora = re.search(r'Hot threads at (\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z)', entrada).group(1)
@@ -44,12 +46,14 @@ def geradorDF(field_caps):
         #if not cpu_total:
         #    cpu_total.append(('other','0.0'))
 
-        print(type(cpu_info),type(cpu_other),type(cpu_total))
-        print(cpu_info,cpu_other,cpu_total)
+        #print(type(cpu_info),type(cpu_other),type(cpu_total))
+        #print(cpu_info,cpu_other,cpu_total)
         
         # Encontrar informações de threads
         #thread_info = re.findall(r'cpu usage by thread \'(.+?)\'', entrada)
-        thread_info = re.findall(r'cpu usage by thread \'elasticsearch\[(.*?)\]\[(.*?)\]\[(.*?)\]\'', entrada)
+        #thread_info = re.findall(r'cpu usage by thread \'elasticsearch\[(.*?)\]\[(.*?)\]\[(.*?)\]\'', entrada)
+        thread_info = re.findall(r'cpu usage by thread \'(.*?)\'', entrada)
+        print("Thread >>>> %s" % thread_info)
         if not thread_info:
             thread_info = re.findall(r'cpu usage by thread \'(.*?)\'', entrada)
             new_thread_info = []
@@ -61,15 +65,33 @@ def geradorDF(field_caps):
         else:
             new_thread_info = []
             for thread in thread_info:
-                new_thread_info.append(thread[1]+"["+thread[2]+"]")
+                if "elasticsearch" in thread:
+                    value = re.findall(r'elasticsearch\[(.*?)\]\[(.*?)\]\[(.*?)\]', thread)
+                    print("VALUE >>>>>>>>>>>> %s" % value[0][1])
+                    new_thread_info.append(value[0][1])
+                else:
+                    print("VALUE >>>>>>>>>>>> %s" % thread)
+                    new_thread_info.append(thread)
 
         #print(new_thread_info)
         #print("Correspondências dentro de colchetes:", correspondencias_colchetes)
         #print("Correspondências dentro de parênteses:", correspondencias_parenteses)
-        node_name = re.findall(r'cpu usage by thread \'elasticsearch\[(.+?)\]', entrada)
+        #node_name = re.findall(r'::: \{(.+?)\}', entrada)
+        node_name = re.findall(r'\'elasticsearch\[(.*?)\]', entrada)
+        
+        print("Node1 >>>> %s" % node_name)
         if not node_name:
             node_name = re.findall(r' \{(.+?)\}', entrada)
+            print("Node2 >>>> %s" % node_name)
+
+        try:
+            while len(node_name) < len(thread_info):
+                node_name.append(node_name[-1]) 
+        except Exception as e:
+            print(e)
          
+        print(new_thread_info)
+        print(node_name)
         # Criar um DataFrame para as informações das threads
         df_threads = pd.DataFrame(new_thread_info, columns=["Thread Name"])
         df_nodes = pd.DataFrame(node_name, columns=["Node Name"])
@@ -91,6 +113,8 @@ def geradorDF(field_caps):
         
         return pd.concat([df_nodes, df_threads, df_principal], axis=1)
 
+    
+    #####################################
     # Extrair informações de cada entrada
     entradas = texto.strip().split(":::")
     clean_entradas = []
@@ -98,6 +122,7 @@ def geradorDF(field_caps):
         if "cpu usage by " in entrada:
             clean_entradas.append(entrada)
     entradas = clean_entradas
+
     #st.write(entradas)
     dados = [extrair_informacoes(entrada) for entrada in entradas if "Hot threads" in entrada]
 
