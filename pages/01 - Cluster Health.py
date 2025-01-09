@@ -153,20 +153,25 @@ BotaoSubmitStyle.botaoSubmit()
 
 if st.button("Obter análise", key='shardSubmit', type="primary"):
     if data_health:
-        data_health = json.loads(data_health)
+        try:
+            data_health = json.loads(data_health)
 
-        status_cluster = data_health['status']
-        status_master = data_health['indicators']['master_is_stable']['status']
-        status_repository = data_health['indicators']['repository_integrity']['status']
-        status_disk = data_health['indicators']['disk']['status']
-        status_shards_capacity = data_health['indicators']['shards_capacity']['status']
-        status_shards_availability = data_health['indicators']['shards_availability']['status']
-        status_ds_lifecycle = data_health['indicators']['data_stream_lifecycle']['status']
-        status_slm = data_health['indicators']['slm']['status']
-        status_ilm = data_health['indicators']['ilm']['status']
+            status_cluster = data_health['status']
+            status_master = data_health['indicators']['master_is_stable']['status']
+            status_repository = data_health['indicators']['repository_integrity']['status']
+            status_disk = data_health['indicators']['disk']['status']
+            status_shards_capacity = data_health['indicators']['shards_capacity']['status']
+            status_shards_availability = data_health['indicators']['shards_availability']['status']
+            status_ds_lifecycle = data_health['indicators']['data_stream_lifecycle']['status']
+            status_slm = data_health['indicators']['slm']['status']
+            status_ilm = data_health['indicators']['ilm']['status']
 
-        st.session_state.data_health = data_health
-        st.session_state.btn_click  = True
+            st.session_state.data_health = data_health
+            st.session_state.btn_click  = True
+        except KeyError:
+            st.warning('Valide se inseriu o cabeçalho correto na consulta!!!\n\n*?filter_path=took,profile&request_cache=false&human=true*', icon="⚠️")
+        except Exception as e:
+            st.error('Valide se colou o arquivo corretamente!!!', icon="🚨")
 
     else:
         st.warning('Preencha os dados!', icon="⚠️")

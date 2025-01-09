@@ -100,44 +100,50 @@ if "btn_click" not in st.session_state:
 BotaoSubmitStyle.botaoSubmit()
 if st.button("Obter análise", key='shardSubmit', type="primary"):
     if data and data_shard:
-        data_hot_list, data_warm_list,data_cold_list,data_frozen_list = set_node_roles(data)
-        data_shard = json.loads(data_shard)
-        df = pd.DataFrame(data_shard)
+        try:
+            data_hot_list, data_warm_list,data_cold_list,data_frozen_list = set_node_roles(data)
+            data_shard = json.loads(data_shard)
+            df = pd.DataFrame(data_shard)
 
-        st.session_state.dados_processados_total = df
-        st.session_state.data = data
-        st.session_state.data_shard = data_shard
-        
-        data_hot_node = []
-        for node in data_hot_list:
-            data_hot_node.append(node['name'])
-        filtered_data_hot= df[df['node'].isin(data_hot_node)]
-        st.session_state.dados_processados_hot = processar_dados_hot(filtered_data_hot)
+            st.session_state.dados_processados_total = df
+            st.session_state.data = data
+            st.session_state.data_shard = data_shard
+            
+            data_hot_node = []
+            for node in data_hot_list:
+                data_hot_node.append(node['name'])
+            filtered_data_hot= df[df['node'].isin(data_hot_node)]
+            st.session_state.dados_processados_hot = processar_dados_hot(filtered_data_hot)
 
-        data_warm_node = []
-        for node in data_warm_list:
-            data_warm_node.append(node['name'])
-        filtered_data_warm= df[df['node'].isin(data_warm_node)]
-        st.session_state.dados_processados_warm = processar_dados_warm(filtered_data_warm)
+            data_warm_node = []
+            for node in data_warm_list:
+                data_warm_node.append(node['name'])
+            filtered_data_warm= df[df['node'].isin(data_warm_node)]
+            st.session_state.dados_processados_warm = processar_dados_warm(filtered_data_warm)
 
-        data_cold_node = []
-        for node in data_cold_list:
-            data_cold_node.append(node['name'])
-        filtered_data_cold= df[df['node'].isin(data_cold_node)]
-        st.session_state.dados_processados_cold = processar_dados_cold(filtered_data_cold)
+            data_cold_node = []
+            for node in data_cold_list:
+                data_cold_node.append(node['name'])
+            filtered_data_cold= df[df['node'].isin(data_cold_node)]
+            st.session_state.dados_processados_cold = processar_dados_cold(filtered_data_cold)
 
-        data_frozen_node = []
-        for node in data_frozen_list:
-            data_frozen_node.append(node['name'])
-        filtered_data_frozen= df[df['node'].isin(data_frozen_node)]
-        st.session_state.dados_processados_frozen = processar_dados_frozen(filtered_data_frozen)
+            data_frozen_node = []
+            for node in data_frozen_list:
+                data_frozen_node.append(node['name'])
+            filtered_data_frozen= df[df['node'].isin(data_frozen_node)]
+            st.session_state.dados_processados_frozen = processar_dados_frozen(filtered_data_frozen)
 
 
-        st.session_state.btn_click  = True
+            st.session_state.btn_click  = True
+        except KeyError:
+            st.warning('Valide se inseriu o cabeçalho correto na consulta!!!\n\n', icon="⚠️")
+        except Exception as e:
+            st.error('Valide se colou o arquivo corretamente!!!', icon="🚨")
     else:
         st.warning('Preencha os dados!', icon="⚠️")
 
 if st.session_state.btn_click:
+    try:
         ### CONVERTENDO VALORES NUMERICOS
         df = st.session_state.dados_processados_total
         data = st.session_state.data
@@ -318,3 +324,7 @@ if st.session_state.btn_click:
             st.markdown(f'<br />',unsafe_allow_html=True)
             sorted_df = df.sort_values(by='store', ascending=False)
             st.write(sorted_df, use_container_width=True)
+    except KeyError:
+        st.warning('Valide se inseriu o cabeçalho correto na consulta!!!\n\n', icon="⚠️")
+    except Exception as e:
+        st.error('Valide se colou o arquivo corretamente!!!', icon="🚨")
