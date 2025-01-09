@@ -17,6 +17,6 @@ with col1:
 with col2:
   st.header("João Neto")
   st.write("**Customer Architect at Elastic**")
-  style = f"padding: 5px; border-radius: 5px; font-size: 22px; line-height: 1.35;"
+  style = f"padding: 3px; border-radius: 3px; font-size: 14px; line-height: 1.35;"
   st.markdown(f'<div id="1" style="{style}"><li>GenAI, Data Analyst, Elasticsearch and Observability Certified Engineer</li><li>Elastic Community Organizer (Goiânia)</li><li>2x Gold Community Contributor</li></div>', unsafe_allow_html=True)
   st.write("📨 joao.neto@elastic.co ")

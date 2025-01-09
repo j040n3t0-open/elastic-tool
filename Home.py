@@ -10,7 +10,7 @@ Header.add_logo()
 
 st.title("Bem-vindo 👋")
 
-st.write("""Acelere o seu trabalho com Elasticsearch usando esse plataforma inovadora, projetada para tornar sua experiência mais eficiente e produtiva""")
+st.write("""Esse projeto foi criado para acelerar ainda mais o seu trabalho com Elasticsearch usando esse plataforma inovadora, projetada para tornar sua experiência mais eficiente e produtiva.""")
 
 st.markdown("### Recursos em Destaque:")
 
@@ -23,7 +23,7 @@ st.write("""**🧮 Total de Campos:** Tenha um controle completo sobre seus índ
 
 **🔥 Análise de Hot Threads:** Nessa guia você conseguirá ver de uma maneira mais clean (tabela) as informações das Threads detalhadas por Nó, dessa forma você poderá identificar facilmente operações ofensoras no ambiente.
 
-Simplifiquei algumas análises do Elasticsearch para que você possa focar no que realmente importa: alcançar resultados incríveis com seus dados.
+Com essa ferramenta foi simplificada algumas análises do Elasticsearch para que você possa focar no que realmente importa: Alcançar resultados incríveis com seus dados.
 
 Experimente agora e eleve sua experiência com Elastic para um novo patamar!""")
 
