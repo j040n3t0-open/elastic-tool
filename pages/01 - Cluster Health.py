@@ -267,14 +267,14 @@ if st.session_state.data_health:
         st.write("Status do Serviço: %s" % data_health['indicators']['slm']['details']['slm_status'])
         st.write("Qtd de Politicas: %s" % data_health['indicators']['slm']['details']['policies'])
 
-        if data_health['indicators']['slm']['impacts']:
+        if 'impacts' in data_health['indicators']['slm']:
             for impacts in data_health['indicators']['slm']['impacts']:
                 st.write("Areas impactadas:")
                 for area in impacts['impact_areas']:
                     st.markdown("* %s" % area)
                 st.write("Impacto: %s" % impacts['description'])
 
-        if data_health['indicators']['slm']['diagnosis']:
+        if 'diagnosis' in data_health['indicators']['slm']:
             for diagnosis in data_health['indicators']['slm']['diagnosis']:
                 st.write("Causa: %s" % diagnosis['cause'])
                 st.write("Solução Proposta: %s" % diagnosis['action'])
@@ -289,3 +289,15 @@ if st.session_state.data_health:
         st.write("Status do Serviço: %s" % data_health['indicators']['ilm']['details']['ilm_status'])
         st.write("Qtd de Politicas: %s" % data_health['indicators']['ilm']['details']['policies'])
         st.write("Indices Estagnados: %s" % data_health['indicators']['ilm']['details']['stagnating_indices'])
+
+        if 'impacts' in data_health['indicators']['ilm']:
+            for impacts in data_health['indicators']['ilm']['impacts']:
+                st.write("Areas impactadas:")
+                for area in impacts['impact_areas']:
+                    st.markdown("* %s" % area)
+                st.write("Impacto: %s" % impacts['description'])
+
+        if 'diagnosis' in data_health['indicators']['ilm']:
+            for diagnosis in data_health['indicators']['ilm']['diagnosis']:
+                st.write("Causa: %s" % diagnosis['cause'])
+                st.write("Solução Proposta: %s" % diagnosis['action'])
