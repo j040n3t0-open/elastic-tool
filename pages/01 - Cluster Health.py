@@ -9,6 +9,7 @@ import numpy as np
 st.cache_data.clear()
 ## Running project
 ##### streamlit run Home.py --theme.base dark --server.port 8502
+st.session_state.data_health = False
 
 Header.add_logo()
 
