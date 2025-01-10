@@ -29,7 +29,7 @@ with name:
 with col1:
   st.markdown("**PREMIOS 🏆**")
   st.markdown(f'''<div id="1" style="{style}">
-              <li>Elastic Certified Professional of the Year 2023</li>
+              <li>Elastic Certified Professional of the Year 2023 Runner-Up</li>
               <li>Elastic Gold Contributor 2022</li>
               <li>Elastic Gold Contributor 2021</li>
               <li>Elastic Silver Contributor 2020</li>
@@ -38,7 +38,7 @@ with col1:
 with col2:
   st.markdown("**CERTIFICAÇÕES 🎯**")
   st.markdown(f'''<div id="1" style="{style}">
-              <li>Elastic GenAI Associate Certification Runner-Up</li>
+              <li>Elastic GenAI Associate Certification</li>
               <li>Elastic Certified Observability Engineer</li>
               <li>Elastic Certified Analyst</li>
               <li>Elastic Certified Engineer</li>
