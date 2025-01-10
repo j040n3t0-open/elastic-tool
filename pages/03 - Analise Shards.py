@@ -53,6 +53,17 @@ def printTotalNodes(data_hot_list,data_warm_list,data_cold_list,data_frozen_list
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">QTD FROZEN<br /> {len(data_frozen_list)}',unsafe_allow_html=True)
 
+def createChart(df,field,subtitle):
+    st.write("Chart History 📈")
+    chart_data = pd.DataFrame(
+        {
+            "Creation Date": df['creation_date'].str[:-14],
+            subtitle: df[field],
+        }
+    )
+
+    st.line_chart(chart_data, x="Creation Date", y=subtitle)
+
 @st.cache_data()
 def processar_dados_hot(dados):
     dados['store'] = pd.to_numeric(dados['store'])
@@ -209,14 +220,18 @@ if st.session_state.btn_click:
                 # Exibir os 10 maiores valores
                 top_10 = sorted_df.head(10)
                 st.write(top_10, use_container_width=True)
-            else:
 
+                createChart(sorted_df,"store","Size (mb)")
+
+            else:
                 PrintInfo.printIndexInformations(filtered_data_hot)
                 st.markdown(f'<br />',unsafe_allow_html=True)
                 sorted_df = st.session_state.dados_processados_hot.sort_values(by='store', ascending=False)
                 # Exibir os 10 maiores valores
                 top_10 = sorted_df.head(10)
                 st.write(top_10, use_container_width=True)
+
+                createChart(sorted_df,"store","Size (mb)")
 
         if len(data_warm_list) > 0:
             st.subheader("WARM > TOP 10 SHARDS")
@@ -241,6 +256,9 @@ if st.session_state.btn_click:
                 # Exibir os 10 maiores valores
                 top_10 = sorted_df.head(10)
                 st.write(top_10, use_container_width=True)
+
+                createChart(sorted_df,"store","Size (mb)")
+
             else:
                 PrintInfo.printIndexInformations(filtered_data_warm)
                 st.markdown(f'<br />',unsafe_allow_html=True)
@@ -248,6 +266,8 @@ if st.session_state.btn_click:
                 # Exibir os 10 maiores valores
                 top_10 = sorted_df.head(10)
                 st.write(top_10, use_container_width=True)
+
+                createChart(sorted_df,"store","Size (mb)")
 
         if len(data_cold_list) > 0:
             st.subheader("COLD > TOP 10 SHARDS")
@@ -273,6 +293,9 @@ if st.session_state.btn_click:
                 # Exibir os 10 maiores valores
                 top_10 = sorted_df.head(10)
                 st.write(top_10, use_container_width=True)
+
+                createChart(sorted_df,"store","Size (mb)")
+
             else:
                 PrintInfo.printIndexInformations(filtered_data_cold)
                 st.markdown(f'<br />',unsafe_allow_html=True)
@@ -281,14 +304,14 @@ if st.session_state.btn_click:
                 top_10 = sorted_df.head(10)
                 st.write(top_10, use_container_width=True)
 
+                createChart(sorted_df,"store","Size (mb)")
+
         if len(data_frozen_list) > 0:
             st.subheader("FROZEN > TOP 10 SHARDS")
             data_frozen_node = []
             for node in data_frozen_list:
                 data_frozen_node.append(node['name'])
             filtered_data_frozen = df[df['node'].isin(data_frozen_node)]
-
-            
 
             filtrar_node_name = st.multiselect("Selecione um Node para filtrar:", st.session_state.dados_processados_frozen['node'].unique(), key='multi_frozen')
 
@@ -306,6 +329,8 @@ if st.session_state.btn_click:
                 # Exibir os 10 maiores valores
                 top_10 = sorted_df.head(10)
                 st.write(top_10, use_container_width=True)
+
+                createChart(sorted_df,"docs","Total Docs")
             else:
                 PrintInfo.printIndexInformations(filtered_data_frozen)
                 st.markdown(f'<br />',unsafe_allow_html=True)
@@ -313,6 +338,8 @@ if st.session_state.btn_click:
                 # Exibir os 10 maiores valores
                 top_10 = sorted_df.head(10)
                 st.write(top_10, use_container_width=True)
+
+                createChart(sorted_df,"docs","Total Docs")
         
         st.divider()
         st.subheader("PLAYGROUND (Todos os dados)")
@@ -333,11 +360,17 @@ if st.session_state.btn_click:
             # Ordenar o DataFrame filtrado pela coluna 'store' em ordem decrescente
             sorted_df = df_filtered.sort_values(by='store', ascending=False)
             st.write(sorted_df, use_container_width=True)
+
+            createChart(sorted_df,"docs","Total Docs")
+
         else:
             PrintInfo.printIndexInformations(df)
             st.markdown(f'<br />',unsafe_allow_html=True)
             sorted_df = df.sort_values(by='store', ascending=False)
             st.write(sorted_df, use_container_width=True)
+
+            createChart(sorted_df,"docs","Total Docs")
+
     except KeyError:
         st.warning('Valide se inseriu o cabeçalho correto na consulta!!!\n\n', icon="⚠️")
     except Exception as e:
