@@ -11,22 +11,22 @@ image = Image.open('imagens/image.png').resize((250, 250), Image.LANCZOS)
 st.title("About")
 st.title("")
 
-col1, col2= st.columns(2)
-with col1:
+col1, image_header, col3 = st.columns(3)
+name = st.columns([1])[0]
+col1, col2, col3 = st.columns(3)
+
+style = f"padding: 3px; border-radius: 3px; font-size: 15px; line-height: 1.35;"
+
+with image_header:
   st.image(image, caption='Elastic Certified Professional')
-with col2:
+
+with name:
   st.header("João Neto")
+  st.markdown("###### 👔 Customer Architect at Elastic")
+  st.markdown("###### 🤝 Elastic Community Organizer in Goiania")
+  st.markdown("###### 📬 joao.neto@elastic.co")
 
-
-  style = f"padding: 3px; border-radius: 3px; font-size: 15px; line-height: 1.35;"
-
-  st.markdown("**JOB 👔**")
-  st.markdown(f'''<div id="1" style="{style}">
-              <li>Customer Architect at Elastic</li>
-              <li>Elastic Community Organizer in Goiania</li>
-              <br />
-              </div>''', unsafe_allow_html=True)
-
+with col1:
   st.markdown("**PREMIOS 🏆**")
   st.markdown(f'''<div id="1" style="{style}">
               <li>Elastic Certified Professional of the Year 2023</li>
@@ -35,7 +35,7 @@ with col2:
               <li>Elastic Silver Contributor 2020</li>
               <br />
               </div>''', unsafe_allow_html=True)
-
+with col2:
   st.markdown("**CERTIFICAÇÕES 🎯**")
   st.markdown(f'''<div id="1" style="{style}">
               <li>Elastic GenAI Associate Certification</li>
@@ -44,7 +44,7 @@ with col2:
               <li>Elastic Certified Engineer</li>
               <br />
               </div>''', unsafe_allow_html=True)
-
+with col3:
   st.markdown("**PALESTREI EM... 👨🏻‍🏫**")
   st.markdown(f'''<div id="1" style="{style}">
               <li>ElasticON</li>
@@ -58,6 +58,3 @@ with col2:
               <li>JoinCommunity</li>
               <br />
               </div>''', unsafe_allow_html=True)
-  
-  st.markdown("**CONTATO 👨‍💻**")
-  st.write("📨 joao.neto@elastic.co ")
