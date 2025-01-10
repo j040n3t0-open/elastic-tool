@@ -205,6 +205,20 @@ if st.session_state.data_health:
         st.write("Nome Node Master: %s" % data_health['indicators']['master_is_stable']['details']['current_master']['name'])
         st.write("ID Node Master: %s" % data_health['indicators']['master_is_stable']['details']['current_master']['node_id'])
 
+        if 'impacts' in data_health['indicators']['master_is_stable']:
+            st.write("AREAS IMPACTADAS:")
+            for impacts in data_health['indicators']['master_is_stable']['impacts']:
+                for area in impacts['impact_areas']:
+                    st.markdown("* %s" % area)
+                st.write("Impacto: %s" % impacts['description'])
+
+        if 'diagnosis' in data_health['indicators']['master_is_stable']:
+            st.write("DIAGNOSTICO:")
+            for diagnosis in data_health['indicators']['master_is_stable']['diagnosis']:
+                st.write("Causa: %s" % diagnosis['cause'])
+                st.write("Solução Proposta: %s" % diagnosis['action'])
+
+
         st.divider()
         
         st.markdown("#### REPOSITORIO")
@@ -212,6 +226,19 @@ if st.session_state.data_health:
         st.write("Status: %s" % data_health['indicators']['repository_integrity']['status'])
         st.write("Descrição: %s" % data_health['indicators']['repository_integrity']['symptom'])
         st.write("Qtd Repositorios: %s" % data_health['indicators']['repository_integrity']['details']['total_repositories'])
+
+        if 'impacts' in data_health['indicators']['repository_integrity']:
+            st.write("AREAS IMPACTADAS:")
+            for impacts in data_health['indicators']['repository_integrity']['impacts']:
+                for area in impacts['impact_areas']:
+                    st.markdown("* %s" % area)
+                st.write("Impacto: %s" % impacts['description'])
+
+        if 'diagnosis' in data_health['indicators']['repository_integrity']:
+            st.write("DIAGNOSTICO:")
+            for diagnosis in data_health['indicators']['repository_integrity']['diagnosis']:
+                st.write("Causa: %s" % diagnosis['cause'])
+                st.write("Solução Proposta: %s" % diagnosis['action'])
 
         st.divider()
         
@@ -226,6 +253,28 @@ if st.session_state.data_health:
         st.write("Nodes com Watermark alto: %s" % data_health['indicators']['disk']['details']['nodes_over_high_watermark'])
         st.write("Nodes com Watermark: %s" % data_health['indicators']['disk']['details']['nodes_over_flood_stage_watermark'])
 
+
+        if 'impacts' in data_health['indicators']['disk']:
+            st.write("AREAS IMPACTADAS")
+            for impacts in data_health['indicators']['disk']['impacts']:
+                for area in impacts['impact_areas']:
+                    st.markdown("* %s" % area)
+                st.write("Impacto: %s" % impacts['description'])
+
+        if 'diagnosis' in data_health['indicators']['disk']:
+            for diagnosis in data_health['indicators']['disk']['diagnosis']:    
+                if 'affected_resources' in diagnosis:
+                    if 'nodes' in diagnosis['affected_resources']:
+                        st.write("NODES IMPACTADOS")
+                        for node in diagnosis['affected_resources']['nodes']:
+                            st.markdown("* %s" % node['name'])
+
+            st.write("DIAGNOSTICO")
+            for diagnosis in data_health['indicators']['disk']['diagnosis']:
+                st.write("Causa: %s" % diagnosis['cause'])
+                st.write("Solução Proposta: %s" % diagnosis['action'])
+
+
         st.divider()
         
         st.markdown("#### CAPACIDADE DOS SHARDS")
@@ -234,6 +283,19 @@ if st.session_state.data_health:
         st.write("Descrição: %s" % data_health['indicators']['shards_capacity']['symptom'])
         st.write("Maximo Shards Hot/Warm/Cold: %s" % data_health['indicators']['shards_capacity']['details']['data']['max_shards_in_cluster'])
         st.write("Maximo Shards Frozen: %s" % data_health['indicators']['shards_capacity']['details']['frozen']['max_shards_in_cluster'])
+
+        if 'impacts' in data_health['indicators']['shards_capacity']:
+            st.write("AREAS IMPACTADAS:")
+            for impacts in data_health['indicators']['shards_capacity']['impacts']:
+                for area in impacts['impact_areas']:
+                    st.markdown("* %s" % area)
+                st.write("Impacto: %s" % impacts['description'])
+
+        if 'diagnosis' in data_health['indicators']['shards_capacity']:
+            st.write("DIAGNOSTICO:")
+            for diagnosis in data_health['indicators']['shards_capacity']['diagnosis']:
+                st.write("Causa: %s" % diagnosis['cause'])
+                st.write("Solução Proposta: %s" % diagnosis['action'])
 
         st.divider()
         
@@ -254,6 +316,19 @@ if st.session_state.data_health:
         st.write("Réplicas Não Assinadas: %s" % data_health['indicators']['shards_availability']['details']['unassigned_replicas'])
         st.write("Criando Replicas: %s" % data_health['indicators']['shards_availability']['details']['creating_replicas'])
         
+        if 'impacts' in data_health['indicators']['shards_availability']:
+            st.write("AREAS IMPACTADAS:")
+            for impacts in data_health['indicators']['shards_availability']['impacts']:
+                for area in impacts['impact_areas']:
+                    st.markdown("* %s" % area)
+                st.write("Impacto: %s" % impacts['description'])
+
+        if 'diagnosis' in data_health['indicators']['shards_availability']:
+            st.write("DIAGNOSTICO:")
+            for diagnosis in data_health['indicators']['shards_availability']['diagnosis']:
+                st.write("Causa: %s" % diagnosis['cause'])
+                st.write("Solução Proposta: %s" % diagnosis['action'])
+
         st.divider()
         
         st.markdown("#### DATA STREAM")
@@ -262,6 +337,20 @@ if st.session_state.data_health:
         st.write("Descrição: %s" % data_health['indicators']['data_stream_lifecycle']['symptom'])
         st.write("Indices Estagnados: %s" % data_health['indicators']['data_stream_lifecycle']['details']['stagnating_backing_indices_count'])
         st.write("Indices com Erro: %s" % data_health['indicators']['data_stream_lifecycle']['details']['total_backing_indices_in_error'])
+
+        if 'impacts' in data_health['indicators']['data_stream_lifecycle']:
+            st.write("AREAS IMPACTADAS:")
+            for impacts in data_health['indicators']['data_stream_lifecycle']['impacts']:
+                for area in impacts['impact_areas']:
+                    st.markdown("* %s" % area)
+                st.write("Impacto: %s" % impacts['description'])
+
+        if 'diagnosis' in data_health['indicators']['data_stream_lifecycle']:
+            st.write("DIAGNOSTICO:")
+            for diagnosis in data_health['indicators']['data_stream_lifecycle']['diagnosis']:
+                st.write("Causa: %s" % diagnosis['cause'])
+                st.write("Solução Proposta: %s" % diagnosis['action'])
+
 
         st.divider()
         
@@ -273,13 +362,14 @@ if st.session_state.data_health:
         st.write("Qtd de Politicas: %s" % data_health['indicators']['slm']['details']['policies'])
 
         if 'impacts' in data_health['indicators']['slm']:
+            st.write("Areas impactadas:")
             for impacts in data_health['indicators']['slm']['impacts']:
-                st.write("Areas impactadas:")
                 for area in impacts['impact_areas']:
                     st.markdown("* %s" % area)
                 st.write("Impacto: %s" % impacts['description'])
 
         if 'diagnosis' in data_health['indicators']['slm']:
+            st.write("DIAGNOSTICO:")
             for diagnosis in data_health['indicators']['slm']['diagnosis']:
                 st.write("Causa: %s" % diagnosis['cause'])
                 st.write("Solução Proposta: %s" % diagnosis['action'])
@@ -296,13 +386,14 @@ if st.session_state.data_health:
         st.write("Indices Estagnados: %s" % data_health['indicators']['ilm']['details']['stagnating_indices'])
 
         if 'impacts' in data_health['indicators']['ilm']:
+            st.write("Areas impactadas:")
             for impacts in data_health['indicators']['ilm']['impacts']:
-                st.write("Areas impactadas:")
                 for area in impacts['impact_areas']:
                     st.markdown("* %s" % area)
                 st.write("Impacto: %s" % impacts['description'])
 
         if 'diagnosis' in data_health['indicators']['ilm']:
+            st.write("DIAGNOSTICO:")
             for diagnosis in data_health['indicators']['ilm']['diagnosis']:
                 st.write("Causa: %s" % diagnosis['cause'])
                 st.write("Solução Proposta: %s" % diagnosis['action'])
