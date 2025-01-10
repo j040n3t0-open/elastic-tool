@@ -55,14 +55,15 @@ def printTotalNodes(data_hot_list,data_warm_list,data_cold_list,data_frozen_list
 
 def createChart(df,field,subtitle):
     st.write("Chart History 📈")
+    x_axis_name = "Data de Criação (índice)"
     chart_data = pd.DataFrame(
         {
-            "Creation Date": df['creation_date'].str[:-14],
+            x_axis_name: df['creation_date'].str[:-14],
             subtitle: df[field],
         }
     )
 
-    st.line_chart(chart_data, x="Creation Date", y=subtitle)
+    st.line_chart(chart_data, x=x_axis_name, y=subtitle)
 
 @st.cache_data()
 def processar_dados_hot(dados):
