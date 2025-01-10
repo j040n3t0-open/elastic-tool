@@ -9,7 +9,6 @@ Header.add_logo()
 image = Image.open('imagens/image.png').resize((250, 250), Image.LANCZOS)
 
 st.title("About")
-st.title("")
 
 col1, image_header, col3 = st.columns(3)
 name = st.columns([1])[0]
