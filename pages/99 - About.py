@@ -38,7 +38,7 @@ with col1:
 with col2:
   st.markdown("**CERTIFICAÇÕES 🎯**")
   st.markdown(f'''<div id="1" style="{style}">
-              <li>Elastic GenAI Associate Certification</li>
+              <li>Elastic GenAI Associate Certification Runner-Up</li>
               <li>Elastic Certified Observability Engineer</li>
               <li>Elastic Certified Analyst</li>
               <li>Elastic Certified Engineer</li>
