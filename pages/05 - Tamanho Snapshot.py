@@ -52,8 +52,14 @@ def printInitialReport(total_lines, total_bytes, avg_bytes, bigger_index, bigger
 def createChart(df):
     df = df.rename(columns={'size': 'size_bytes'})
     st.write("Chart History 📈")
-    st.write(alt.Chart(df).mark_bar().encode(x=alt.X('index', sort=None),y='size_bytes',))
 
+    c = (
+        alt.Chart(df)
+        .mark_bar()
+        .encode(x=alt.X('index', sort=None), y="size_bytes", color="index", tooltip=["index", "size_bytes"])
+    )
+
+    st.altair_chart(c, use_container_width=True)
 
 st.title("Análise Tamanho Snapshot 💾")
 st.subheader("Espaço destinado para análisar o tamanho de um snapshot, visto que a informação vem segmentada índice a índice!")
