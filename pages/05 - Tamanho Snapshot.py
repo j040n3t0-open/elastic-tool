@@ -4,7 +4,6 @@ from components import Header, PrintInfo, Cadastro, BotaoSubmitStyle
 import random, json, re
 import pandas as pd
 import numpy as np
-from vega_datasets import data
 import altair as alt
 
 
