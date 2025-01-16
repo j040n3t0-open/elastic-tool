@@ -146,4 +146,8 @@ if st.session_state.data_health:
         st.markdown("#### Top 10 Índices")
 
         top_10 = sorted_df.head(10)
+        
         createChart(top_10)
+
+        st.markdown("#### Dataset Completo dos Índices")
+        st.write(sorted_df, use_container_width=True)
