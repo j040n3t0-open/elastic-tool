@@ -65,7 +65,7 @@ st.title("Análise Tamanho Snapshot 💾")
 st.subheader("Espaço destinado para análisar o tamanho de um snapshot, visto que a informação vem segmentada índice a índice!")
 
 st.markdown("Vamos pegar o consulta do Snapshot")
-code = '''GET /_snapshot/<NOME_REPOSITORIO>/<NOME_SNAPSHOT>?index_details=true'''
+code = '''GET /_snapshot/<NOME_REPOSITORIO>/<NOME_SNAPSHOT>?index_details=true&human=true'''
 st.code(code, language='php')
 
 data_health = st.text_area('Cole aqui o retorno da consulta:')
