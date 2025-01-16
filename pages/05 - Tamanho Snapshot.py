@@ -39,12 +39,12 @@ def printInitialReport(total_lines, total_bytes, avg_bytes, bigger_index, bigger
         st.markdown(f'<div id="1" style="{style}">Mediana Tamanho (kB)<br /> {avg_bytes}',unsafe_allow_html=True)
 
     with col4:
-        style = f"background-color: {'red'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        style = f"background-color: {'#91244a'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">Maior Index: {bigger_index}<br /> {bigger_size_human}',unsafe_allow_html=True)
 
     with col5:
-        style = f"background-color: {'blue'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
+        style = f"background-color: {'#3638b5'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
         hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
         st.markdown(f'<div id="1" style="{style}">Menor Index: {lowest_index}<br /> {lowest_size_human}',unsafe_allow_html=True)
 
