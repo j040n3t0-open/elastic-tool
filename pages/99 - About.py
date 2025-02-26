@@ -41,6 +41,7 @@ with col2:
               <li>Elastic Certified Observability Engineer</li>
               <li>Elastic Certified Analyst</li>
               <li>Elastic Certified Engineer</li>
+              <li>AWS Cloud Practitioner</li>
               <br />
               </div>''', unsafe_allow_html=True)
 with col3:
