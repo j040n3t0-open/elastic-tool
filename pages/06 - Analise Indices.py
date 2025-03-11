@@ -102,7 +102,7 @@ st.subheader("Espaço destinado para agrupar indices com base no nome da aplicac
 
 st.markdown("Por exemplo, se temos os seguintes indices:")
 code = '''.ds-xpto-2025.03.21-000001
-.ds-xpto-2025.03.27-000d002
+.ds-xpto-2025.03.27-000002
 .ds-xpto-2025.03.30-000003'''
 st.code(code, language='php')
 
