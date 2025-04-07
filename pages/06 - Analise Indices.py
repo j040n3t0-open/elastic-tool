@@ -51,39 +51,6 @@ def generate_base_names(file_path, output_file_base, output_file_counts):
     
     return df_counts
 
-def printInitialReport(total_lines, total_bytes, avg_bytes, bigger_index, bigger_size, bigger_size_human, lowest_index, lowest_size, lowest_size_human):
-    st.markdown("#### Métricas Gerais")
-    col1, col2, col3 = st.columns(3)
-    st.columns(4)
-    st.markdown("#### Análise dos índices")
-    col4, col5 = st.columns(2)
-
-
-    with col1:
-        style = f"background-color: {'#0f8713'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
-        hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
-        st.markdown(f'<div id="1" style="{style}">Total Indices<br /> {total_lines}',unsafe_allow_html=True)
-
-    with col2:
-        style = f"background-color: {'#05ab1e'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
-        hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
-        st.markdown(f'<div id="1" style="{style}">Tamanho Total (GB)<br /> {total_bytes}',unsafe_allow_html=True)
-
-    with col3:
-        style = f"background-color: {'#63bf7a'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
-        hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
-        st.markdown(f'<div id="1" style="{style}">Mediana Tamanho (kB)<br /> {avg_bytes}',unsafe_allow_html=True)
-
-    with col4:
-        style = f"background-color: {'#91244a'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
-        hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
-        st.markdown(f'<div id="1" style="{style}">Maior Index: {bigger_index}<br /> {bigger_size_human}',unsafe_allow_html=True)
-
-    with col5:
-        style = f"background-color: {'#3638b5'}; padding: 5px; border-radius: 5px; font-weight: bold; text-align: center; line-height: 1.5; font-size: 18px; height: 80px;display: flex; justify-content: center; align-items: center;"
-        hot_price_style = "font-size: 12px; margin-bottom: 0;"  # Defina o tamanho de fonte desejado
-        st.markdown(f'<div id="1" style="{style}">Menor Index: {lowest_index}<br /> {lowest_size_human}',unsafe_allow_html=True)
-
 def createChart(df,field,subtitle):
     #df = df.rename(columns={'size': 'size_bytes'})
     df = df.head(20)
@@ -132,9 +99,6 @@ if st.button("Obter análise", key='shardSubmit', type="primary"):
         try:
             data_health = json.loads(data_health)
 
-            df = pd.DataFrame(columns=['index', 'size'])
-            id = 0
-
             # Exemplo de uso
             file_path = data_health  # Altere para o caminho correto do arquivo
             output_file_base = "base_names.csv"  # Caminho do arquivo de saída com nomes únicos
@@ -143,6 +107,10 @@ if st.button("Obter análise", key='shardSubmit', type="primary"):
 
             st.write("")
             st.write("")
+            print(df_counts)
+
+            text = f"Identificados {len(df_counts['Base Name'])} aplicacoes!"
+            st.info(text,  icon="🔎")
             createChart(df_counts,"Base Name","Count")
 
             st.divider()

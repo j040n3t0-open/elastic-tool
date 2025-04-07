@@ -25,6 +25,14 @@ st.write("""**🏥 Cluster Health:** A partir da versão 8.17+ foi criado a api 
 
 **🔥 Análise de Hot Threads:** Nessa guia você conseguirá ver de uma maneira mais clean (tabela) as informações das Threads detalhadas por Nó, dessa forma você poderá identificar facilmente operações ofensoras no ambiente.
 
+**📏 Tamanho de Snapshot:** Aqui você conseguirá ver de forma mais clar informações sobre o tamanho de um snapshot em um repositório.
+
+**🔎 Analise Indices:** Com esse recurso você poderá analisar quantos indices ou shards um determinado grupo de aplicações possui dentro do cluster.
+         
+**🚨 Hot Spot analise:** Excelente ferramenta para descobrir se existe um desbalanceamento na distribuição de shards, podendo auxiliar na identificação de hot spot nodes referente a search ou indexação.
+
+**📈  Tamanho de Shards:** Quer saber como está o tamanho dos seus shards? Aqui você consegue ver isso de forma simples e objectiva.
+
 Com essa ferramenta foi simplificada algumas análises do Elasticsearch para que você possa focar no que realmente importa: Alcançar resultados incríveis com seus dados.
 
 Experimente agora e eleve sua experiência com Elastic para um novo patamar!""")
