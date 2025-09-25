@@ -125,8 +125,16 @@ if st.button("Obter análise", key='shardSubmit', type="primary"):
             data_index_creation = json.loads(data_index_creation)
             df_index_creation = pd.DataFrame(data_index_creation)
 
+            data_role_json = json.loads(data)
+            data_role = pd.DataFrame(data_role_json)
+            data_role = data_role.rename(columns={'name': 'node'})
+
+            print(data_role)
+
             # Adicionar informação de data de criação no Shard com base no índice
             df = df.merge(df_index_creation, on='index', how='left')
+            # Adicionar informação de tipo do Node com base no indice
+            df = df.merge(data_role, on='node', how='left')
             # Renomear o nome da coluna
             df = df.rename(columns={'cds': 'creation_date'})
 
@@ -360,6 +368,7 @@ if st.session_state.btn_click:
             st.write("Dados filtrados:")
             # Ordenar o DataFrame filtrado pela coluna 'store' em ordem decrescente
             sorted_df = df_filtered.sort_values(by='store', ascending=False)
+            sorted_df = sorted_df.merge()
             st.write(sorted_df, use_container_width=True)
 
             createChart(sorted_df,"docs","Total Docs")
